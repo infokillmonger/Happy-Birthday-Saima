@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Saima!</title>
+    <!-- Canvas Confetti Library -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <style>
+        :root {
+            --pink-soft: #ffc0cb;
+            --pink-deep: #ff69b4;
+            --cream: #fff5f8;
+            --gold: #ffd700;
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--cream);
+            color: #444;
+            overflow-x: hidden;
+        }
+
+        .page {
+            display: none;
+            min-height: 100vh;
+            width: 100%;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 20px;
+            box-sizing: border-box;
+            animation: fadeIn 0.8s ease-in-out;
+        }
+
+        .active { display: flex; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Cute Image Styles */
+        .img-container {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            border: 8px solid white;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+            overflow: hidden;
+            background-color: #eee;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        h1 { color: var(--pink-deep); font-size: 2.5rem; margin-bottom: 10px; }
+        p { font-size: 1.1rem; line-height: 1.6; max-width: 300px; margin: 10px auto; }
+
+        /* Button Styles */
+        .btn {
+            background-color: var(--pink-deep);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(255, 105, 180, 0.4);
+            transition: transform 0.2s;
+            margin-top: 30px;
+            text-decoration: none;
+        }
+
+        .btn:active { transform: scale(0.95); }
+
+        /* Specific Page Decor */
+        #page2 { background: linear-gradient(180deg, #fff5f8 0%, #ffe4e1 100%); }
+        .cake-icon { font-size: 50px; margin: 10px; }
+
+        /* Mobile Friendliness */
+        @media (max-width: 480px) {
+            h1 { font-size: 2rem; }
+            .img-container { width: 180px; height: 180px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- PAGE 1: THE WISH -->
+    <div id="page1" class="page active">
+        <div class="img-container">
+            <!-- Replace 'pic1.jpg' with Saima's photo -->
+            <img src="pic1.jpg" alt="Saima 1">
+        </div>
+        <h1>Happy Birthday, Saima! 🎂</h1>
+        <p>To the sweetest and cutest girl I know. May your day be as bright as your smile!</p>
+        <button class="btn" onclick="nextPage(2)">Let's Celebrate! ✨</button>
+    </div>
+
+    <!-- PAGE 2: CAKE CUTTING -->
+    <div id="page2" class="page">
+        <div class="img-container">
+            <img src="pic2.jpg" alt="Saima 2">
+        </div>
+        <div class="cake-icon">🎂✨🍰</div>
+        <h1>Time to Cut the Cake!</h1>
+        <p>Make a wish, Saima! You deserve the world and all the sprinkles on top.</p>
+        <button class="btn" onclick="nextPage(3)">A Message for You ❤️</button>
+    </div>
+
+    <!-- PAGE 3: ADMIRATION -->
+    <div id="page3" class="page">
+        <div class="img-container">
+            <img src="pic3.jpg" alt="Saima 3">
+        </div>
+        <h1>My Bestie Saima</h1>
+        <p>I want you to know how much I admire your strength and kindness. I have so much love, care, and respect for the person you are.</p>
+        <button class="btn" onclick="nextPage(4)">One Last Thing... 🎓</button>
+    </div>
+
+    <!-- PAGE 4: FUTURE & NURSING -->
+    <div id="page4" class="page">
+        <div class="img-container">
+            <img src="pic4.jpg" alt="Saima 4">
+        </div>
+        <h1>To Your Bright Future!</h1>
+        <p>Good luck with your <b>BSc Nursing</b>! You're going to be an amazing nurse. I'm always here to support you. Have a wonderful year ahead!</p>
+        <button class="btn" onclick="celebrate()">Click for Magic! 🎉</button>
+        <p style="font-size: 0.8rem; margin-top: 20px;">With love, Shivam</p>
+    </div>
+
+    <script>
+        function nextPage(pageNumber) {
+            // Hide all pages
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            // Show target page
+            document.getElementById('page' + pageNumber).classList.add('active');
+            
+            // Trigger a little confetti on each page transition
+            confetti({
+                particleCount: 100,
+                spread: 70,
+                origin: { y: 0.6 },
+                colors: ['#ff69b4', '#ffc0cb', '#ffd700']
+            });
+        }
+
+        function celebrate() {
+            var duration = 5 * 1000;
+            var animationEnd = Date.now() + duration;
+            var defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
+
+            function randomInRange(min, max) {
+              return Math.random() * (max - min) + min;
+            }
+
+            var interval = setInterval(function() {
+              var timeLeft = animationEnd - Date.now();
+
+              if (timeLeft <= 0) {
+                return clearInterval(interval);
+              }
+
+              var particleCount = 50 * (timeLeft / duration);
+              confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 } }));
+              confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 } }));
+            }, 250);
+        }
+        
+        // Auto-fire confetti on first load
+        window.onload = () => {
+            confetti({
+                particleCount: 150,
+                spread: 100,
+                origin: { y: 0.6 }
+            });
+        };
+    </script>
+</body>
+</html>
